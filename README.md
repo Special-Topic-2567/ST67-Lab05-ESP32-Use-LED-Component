@@ -198,6 +198,7 @@ extern "C" void app_main(void)
     ......*.
     .......*
 ```
+```
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -225,6 +226,7 @@ extern "C" void app_main(void)
         if(i++ >= 7) i = 0;
     }
 }
+```
 
 link : https://drive.google.com/drive/folders/1-hT8kjvQ70MCxC2XCnjXJTX9c2T6pdfS
 
@@ -238,6 +240,7 @@ link : https://drive.google.com/drive/folders/1-hT8kjvQ70MCxC2XCnjXJTX9c2T6pdfS
     ..*..*..
     .*....*.
     *......*
+```
 ```
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"
@@ -274,6 +277,7 @@ extern "C" void app_main(void)
         if(j <= 0) j = 7;
     }
 }
+```
 
 link : https://drive.google.com/drive/u/1/folders/1-ZsX9ZGn9JJUDrZ0NEGjN6l6n6Wk8wmX
 
@@ -295,6 +299,7 @@ link : https://drive.google.com/drive/u/1/folders/1-ZsX9ZGn9JJUDrZ0NEGjN6l6n6Wk8
     .*......
     *.......
 ```
+```
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -314,7 +319,7 @@ LED leds[] = {led1, led2, led3, led4, led5, led6, led7, led8};
 extern "C" void app_main(void)
 {
     int i = 0;
-    int direction = 1; // 1 for forward, -1 for backward
+    int direction = 1; // 1 = forward //-1 for backward
 
     while(1)
     {        
@@ -330,5 +335,6 @@ extern "C" void app_main(void)
         }
     }
 }
+```
 
 link : https://drive.google.com/drive/u/1/folders/1-ca7I8wu15ucu2k_x-MDhxL9ygPIjRk3
