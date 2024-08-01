@@ -212,6 +212,41 @@ extern "C" void app_main(void)
     .*....*.
     *......*
 ```
+```
+#include <stdio.h>
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "LED.h"
+
+
+LED leds[] = {LED(16), LED(17), LED(5), LED(18), LED(19), LED(21), LED(22), LED(23)};
+
+extern "C" void app_main(void)
+{
+    const int num_leds = sizeof(leds) / sizeof(LED);  
+    const int half = num_leds / 2;  
+    int offset = 0;  
+
+    while (1)
+    {
+        for (int i = 0; i < num_leds; ++i) 
+            leds[i].OFF();
+
+        leds[offset].ON();  // เปิด LED ด้านซ้าย
+        leds[num_leds - offset - 1].ON();  
+
+        vTaskDelay(100 / portTICK_PERIOD_MS);
+        offset = (offset + 1) % half; 
+    }
+}
+```
+
+
+
+
+
+
+
 
 3. ไฟวิ่งไปกลับ 
 ```
@@ -230,4 +265,49 @@ extern "C" void app_main(void)
     ..*.....
     .*......
     *.......
+```
+
+```
+#include <stdio.h>
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "LED.h"
+
+LED led1(16); 
+LED led2(17); 
+LED led3(5); 
+LED led4(18); 
+LED led5(19); 
+LED led6(21); 
+LED led7(22); 
+LED led8(23); 
+
+LED leds[] = {led1, led2, led3, led4, led5, led6, led7, led8};
+
+extern "C" void app_main(void)
+{
+    int i = 0;
+    int direction = 1; // 1 for forward, -1 for backward
+
+    while(1)
+    {
+        leds[i].ON();
+        vTaskDelay(100 / portTICK_PERIOD_MS);
+        leds[i].OFF();
+
+        // Move to the next LED
+        i += direction;
+
+        // Check if we need to change direction
+        if (i == 7) // reached the end, switch direction to backward
+        {
+            direction = -1;
+        }
+        else if (i == 0) // reached the start, switch direction to forward
+        {
+            direction = 1;
+        }
+    }
+}
+
 ```
