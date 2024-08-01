@@ -214,8 +214,11 @@ https://drive.google.com/file/d/12ka56SYJy6bz-IJjW4CmXUd3_RVDFtca/view?usp=drive
     .*....*.
     *......*
 ```
+
 ![image](https://github.com/user-attachments/assets/6857c938-ec47-4761-b343-e6c23dc0bfa8)
+
 https://drive.google.com/file/d/1nZoQJF4fpH-rQ9RnKXsizGTOnED0X6mD/view?usp=drive_link
+
 3. ไฟวิ่งไปกลับ 
 ```
     *.......
