@@ -200,6 +200,37 @@ extern "C" void app_main(void)
     ......*.
     .......*
 ```
+```
+#include <stdio.h>
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "LED.h"
+
+LED led1(16); 
+LED led2(17); 
+LED led3(5); 
+LED led4(18); 
+LED led5(19); 
+LED led6(21); 
+LED led7(22); 
+LED led8(23); 
+
+LED leds[] = {led1, led2, led3, led4, led5, led6, led7, led8};
+
+extern "C" void app_main(void)
+{
+    int i = 0;
+    while(1)
+    {        
+        leds[i].ON();
+        vTaskDelay(500/portTICK_PERIOD_MS);
+        leds[i].OFF();
+        if(i++ >= 7) i = 0;
+    }
+}
+```
+
+link : https://drive.google.com/drive/folders/1-hT8kjvQ70MCxC2XCnjXJTX9c2T6pdfS
 
 2. ไฟวิ่งสองดวงสวนกันตรงกลาง 
 ```
@@ -212,6 +243,45 @@ extern "C" void app_main(void)
     .*....*.
     *......*
 ```
+```
+#include <stdio.h>
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "LED.h"
+
+LED led1(16); 
+LED led2(17); 
+LED led3(5); 
+LED led4(18); 
+LED led5(19); 
+LED led6(21); 
+LED led7(22); 
+LED led8(23); 
+
+LED leds[] = {led1, led2, led3, led4, led5, led6, led7, led8};
+
+extern "C" void app_main(void)
+{
+    int i = 0;
+    int j = 7;
+    while(1)
+    {        
+        leds[i].ON();
+        leds[j].ON();
+        vTaskDelay(300/portTICK_PERIOD_MS);
+        leds[i].OFF();
+        leds[j].OFF();
+        
+        i++;
+        j--;
+
+        if(i >= 7) i = 0;
+        if(j <= 0) j = 7;
+    }
+}
+```
+
+link : https://drive.google.com/drive/u/1/folders/1-ZsX9ZGn9JJUDrZ0NEGjN6l6n6Wk8wmX
 
 3. ไฟวิ่งไปกลับ 
 ```
@@ -231,3 +301,42 @@ extern "C" void app_main(void)
     .*......
     *.......
 ```
+```
+#include <stdio.h>
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "LED.h"
+
+LED led1(16); 
+LED led2(17); 
+LED led3(5); 
+LED led4(18); 
+LED led5(19); 
+LED led6(21); 
+LED led7(22); 
+LED led8(23); 
+
+LED leds[] = {led1, led2, led3, led4, led5, led6, led7, led8};
+
+extern "C" void app_main(void)
+{
+    int i = 0;
+    int direction = 1; // 1 = forward //-1 for backward
+
+    while(1)
+    {        
+        leds[i].ON();
+        vTaskDelay(300/portTICK_PERIOD_MS);
+        leds[i].OFF();
+
+        i += direction;
+
+        if(i >= 7 || i <= 0)
+        {
+            direction = -direction;
+        }
+    }
+}
+```
+
+link : https://drive.google.com/drive/u/1/folders/1-ca7I8wu15ucu2k_x-MDhxL9ygPIjRk3
