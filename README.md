@@ -212,6 +212,35 @@ extern "C" void app_main(void)
     .*....*.
     *......*
 ```
+extern "C" void app_main(void)
+{
+    int i = 0;
+    int j = 7; // Start from the last LED
+ 
+    while(1)
+    {        
+        leds[i].ON();
+        leds[j].ON();
+ 
+        vTaskDelay(100/portTICK_PERIOD_MS);
+ 
+        leds[i].OFF();
+        leds[j].OFF();
+ 
+        // Move indices in opposite directions
+        i++;
+        j--;
+        // Wrap around indices to create the running effect
+        if (i >= 8) {
+            i = 0;
+        }
+        if (j < 0) {
+            j = 7;
+        }
+    }
+}
+
+วิ่งสวนทางhttps://kmitlthailand-my.sharepoint.com/:v:/g/personal/65030275_kmitl_ac_th/EZ4xRpvfoixMozKawzIt8JgBtTFQJln1akNYKNhWj1df3w?e=c9bwEu
 
 3. ไฟวิ่งไปกลับ 
 ```
@@ -229,5 +258,28 @@ extern "C" void app_main(void)
     ...*....
     ..*.....
     .*......
-    *.......
+    *.......extern "C" void app_main(void)
+{
+    int i = 0;
+    int direction = 1;  // 1 for forward direction, -1 for backward direction
+ 
+    while(1)
+    {        
+        leds[i].ON();
+        vTaskDelay(100/portTICK_PERIOD_MS);
+        leds[i].OFF();
+ 
+        i += direction;
+วิ่งไปกลับ
+        // Change direction when reaching boundaries
+        if (i >= 8) {
+            direction = -1;  // Change direction to backward
+            i = 6;  // Set index to 6 to prevent accessing out-of-bound index
+        } else if (i < 0) {
+            direction = 1;  // Change direction to forward
+            i = 1;  // Set index to 1 to prevent accessing out-of-bound index
+        }
+    }
+}https://kmitlthailand-my.sharepoint.com/:v:/g/personal/65030275_kmitl_ac_th/EZ4xRpvfoixMozKawzIt8JgBtTFQJln1akNYKNhWj1df3w?e=ZzLmnl
 ```
+https://kmitlthailand-my.sharepoint.com/:v:/g/personal/65030275_kmitl_ac_th/EQblfH-I-z1Es4f4mXB1TBABXKKkk7Y5eaTKNYsCIkfQcA?e=dCZdsy
